@@ -2,7 +2,6 @@
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { invoke } from '@tauri-apps/api/core'
 import { listen, type UnlistenFn } from '@tauri-apps/api/event'
-import { Effect, getCurrentWindow } from '@tauri-apps/api/window'
 
 interface Player {
   championId: number
@@ -30,9 +29,6 @@ const enemies = computed(() =>
 let stop: UnlistenFn | undefined
 let disposed = false
 onMounted(async () => {
-  void getCurrentWindow()
-    .setEffects({ effects: [Effect.Acrylic], color: [20, 30, 46, 155] })
-    .catch(() => {})
   stop = await listen<Snapshot>('enemy-board-data', e => {
     state.value = e.payload ?? {}
   })
@@ -121,8 +117,7 @@ body {
   padding: 22px 26px 16px;
   border: 1px solid #d0e5ff38;
   border-radius: 22px;
-  background: linear-gradient(130deg, #26354cdc, #111b2ae8);
-  backdrop-filter: blur(28px) saturate(140%);
+  background: linear-gradient(130deg, #26354c, #111b2a);
   box-shadow:
     inset 0 1px 0 #ffffff24,
     0 8px 28px #00000045;
