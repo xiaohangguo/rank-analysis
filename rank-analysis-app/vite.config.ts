@@ -29,7 +29,8 @@ export default defineConfig(() => ({
     },
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html')
+        main: resolve(__dirname, 'index.html'),
+        enemyBoard: resolve(__dirname, 'enemy-board.html')
       },
       output: {
         manualChunks: {

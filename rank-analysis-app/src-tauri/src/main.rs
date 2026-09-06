@@ -142,6 +142,7 @@ fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
         })
         .manage(AppState::default())
         .invoke_handler(tauri::generate_handler![
+            rank_analysis_lib::enemy_board::enemy_board_snapshot,
             command::ai::stream_ai_analysis,
             command::asset::get_asset_details,
             command::bp::get_bp_decision,
@@ -215,6 +216,7 @@ fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     }
 
     app_builder = app_builder.setup(move |app| {
+        rank_analysis_lib::enemy_board::start(app.handle());
         // 配置变更 → 通知前端调度防抖云推送。只发云同步口径内的键:
         // 黑名单键(含 configLastSyncAt 这类同步自身写的标记)不发,否则
         // 每次同步落盘标记又触发下一轮同步,永不收敛。

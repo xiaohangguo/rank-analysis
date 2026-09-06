@@ -1,0 +1,6 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "enemy-board",
+  "windows": ["enemy-board"],
+  "permissions": ["core:event:default", "core:window:allow-set-effects"]
+}
